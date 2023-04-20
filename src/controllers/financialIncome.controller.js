@@ -17,6 +17,21 @@ const postFinancialIncome = async function(req, res, next) {
     }
 }
 
+const getFinancialIncome = async function(req, res, next) {
+    try {
+        const response = await financialIncomeService.getFinancialIncome();
+
+        if (response && response.message) {
+            throw response;
+        }
+
+        res.send(response);
+    } catch (error) {
+        return next(error)
+    }
+}
+
 module.exports = {
-    postFinancialIncome: postFinancialIncome
+    postFinancialIncome: postFinancialIncome,
+    getFinancialIncome: getFinancialIncome
 }

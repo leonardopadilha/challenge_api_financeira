@@ -15,6 +15,19 @@ const postFinancialIncome = async function(financialValues) {
      return financialIncome;
 }
 
+const getFinancialIncome = async function() {
+    const financialIncome = await financialIncomeRepository.getFinancialIncome();
+
+    //console.log(`Vish: ${financialIncome.length}`)
+
+    if (financialIncome.length == 0) {
+        return createError(400, "Sorry, we couldn't find any records for this search.")    
+    }
+    
+    return financialIncome;
+}
+
 module.exports = {
-    postFinancialIncome: postFinancialIncome
+    postFinancialIncome: postFinancialIncome,
+    getFinancialIncome: getFinancialIncome
 }
