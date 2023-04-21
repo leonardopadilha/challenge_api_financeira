@@ -31,7 +31,22 @@ const getFinancialIncome = async function(req, res, next) {
     }
 }
 
+const getFinancialIncomeById = async function(req, res, next) {
+    try {
+        const response = await financialIncomeService.getFinancialIncomeById(req.params.id);
+
+        if (response && response.message) {
+            throw response;
+        }
+
+        res.send(response)
+    } catch (error) {
+        return next(error)
+    }
+}
+
 module.exports = {
     postFinancialIncome: postFinancialIncome,
-    getFinancialIncome: getFinancialIncome
+    getFinancialIncome: getFinancialIncome,
+    getFinancialIncomeById: getFinancialIncomeById
 }

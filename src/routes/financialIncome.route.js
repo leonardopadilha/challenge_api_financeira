@@ -6,5 +6,6 @@ const financialIncomeController = require('../controllers/financialIncome.contro
 router
     .post('/', financialIncomeController.postFinancialIncome)
     .get('/', financialIncomeController.getFinancialIncome)
+    .get('/:id', financialIncomeController.getFinancialIncomeById)
 
 module.exports = router;

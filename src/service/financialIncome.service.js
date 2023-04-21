@@ -11,14 +11,11 @@ const postFinancialIncome = async function(financialValues) {
 
      const financialIncome = await financialIncomeRepository.postFinancialIncome(financialValues);
 
-     console.log(`Receitas: ${financialIncome}`)
      return financialIncome;
 }
 
 const getFinancialIncome = async function() {
     const financialIncome = await financialIncomeRepository.getFinancialIncome();
-
-    //console.log(`Vish: ${financialIncome.length}`)
 
     if (financialIncome.length == 0) {
         return createError(400, "Sorry, we couldn't find any records for this search.")    
@@ -27,7 +24,18 @@ const getFinancialIncome = async function() {
     return financialIncome;
 }
 
+const getFinancialIncomeById = async function(id) {
+    const financialIncome = await financialIncomeRepository.getFinancialIncomeById(id);
+
+    if (!financialIncome) {
+        return createError(404, `Sorry, id ${id} not found`) 
+    }
+
+    return financialIncome;
+}
+
 module.exports = {
     postFinancialIncome: postFinancialIncome,
-    getFinancialIncome: getFinancialIncome
+    getFinancialIncome: getFinancialIncome,
+    getFinancialIncomeById: getFinancialIncomeById
 }
