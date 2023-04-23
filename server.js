@@ -13,7 +13,7 @@ const financialIncomeRoute = require('./src/routes/financialIncome.route');
 app.use(bodyParser.urlencoded( { extended: true }));
 app.use(bodyParser.json());
 
-app.use('/api/financial', financialIncomeRoute);
+app.use('/api/receitas', financialIncomeRoute);
 
 app.use(handle_404Error);
 app.use(handleError);

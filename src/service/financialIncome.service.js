@@ -3,9 +3,10 @@ const createError = require('http-errors')
 
 const postFinancialIncome = async function(financialValues) {
 
-   const financialExists = await financialIncomeRepository.getFinancialIncomeByWhere({ descricao: financialValues.descricao })
+   const descriptionExists = await financialIncomeRepository.getFinancialIncomeByWhere({ descricao: financialValues.descricao })
+   const mounthExists = await financialIncomeRepository.getFinancialIncomeByWhere({ mes: financialValues.mes })
 
-    if (financialExists) {
+    if (descriptionExists && mounthExists) {
         return createError(409, 'Sorry, finance income already exists')
     }
 

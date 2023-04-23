@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   Receitas.init({
     descricao: DataTypes.STRING,
     valor: DataTypes.DECIMAL(10, 2),
-    data: DataTypes.DATE
+    mes: DataTypes.STRING
 
   }, {
     sequelize,
