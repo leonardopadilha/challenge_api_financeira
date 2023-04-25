@@ -15,6 +15,10 @@ const postFinancialIncome = async function(financialValues) {
      return financialIncome;
 }
 
+const postManyFinancialIncome = async function(financialValues) {
+
+}
+
 const getFinancialIncome = async function() {
     const financialIncome = await financialIncomeRepository.getFinancialIncome();
 
@@ -35,8 +39,44 @@ const getFinancialIncomeById = async function(id) {
     return financialIncome;
 }
 
+const getFinancialIncomeByQuery = async function(financialValues) {
+    const financialIncome = await financialIncomeRepository.getFinancialIncomeByQuery({ descricao: financialValues.descricao })
+
+    if (financialIncome.length == 0) {
+        return createError(400, "Sorry, we couldn't find any records for this search.") 
+    }
+
+    return financialIncome;
+}
+
+const deleteFinancialIncome = async function(id) {
+    const financialIncome = await financialIncomeRepository.getFinancialIncomeById(id);
+
+    if (!financialIncome) {
+        return createError(404, `Sorry, id ${id} not found`) 
+    }
+
+    await financialIncomeRepository.deleteFinancialIncome(id);
+    return financialIncome;
+
+}
+
+const destroyFinancialIncome = async function(id) {
+    const financialIncome = await financialIncomeRepository.getFinancialIncomeById(id);
+
+    if (!financialIncome) {
+        return createError(404, `Sorry, id ${id} not found`)
+    }
+
+    await financialIncomeRepository.destroyFinancialIncome(id);
+    return financialIncome;
+}
+
 module.exports = {
     postFinancialIncome: postFinancialIncome,
     getFinancialIncome: getFinancialIncome,
-    getFinancialIncomeById: getFinancialIncomeById
+    getFinancialIncomeById: getFinancialIncomeById,
+    getFinancialIncomeByQuery: getFinancialIncomeByQuery,
+    deleteFinancialIncome: deleteFinancialIncome,
+    destroyFinancialIncome: destroyFinancialIncome
 }

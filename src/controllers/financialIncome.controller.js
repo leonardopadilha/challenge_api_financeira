@@ -45,8 +45,53 @@ const getFinancialIncomeById = async function(req, res, next) {
     }
 }
 
+const getFinancialIncomeByQuery = async function(req, res, next) {
+    try {
+        const response = await financialIncomeService.getFinancialIncomeByQuery(req.query);
+        
+        if (response && response.message) {
+            throw response;
+        }
+
+        res.send(response)
+    } catch (error) {
+        return next(error);
+    }
+}
+
+const deleteFinancialIncome = async function(req, res, next) {
+    try {
+        const response = await financialIncomeService.deleteFinancialIncome(req.params.id);
+
+        if (response && response.message) {
+            throw response;
+        }
+
+        res.send(response);
+    } catch (error) {
+        return next(error)
+    }
+}
+
+const destroyFinancialIncome = async function(req, res, next) {
+    try {
+        const response = await financialIncomeService.destroyFinancialIncome(req.params.id);
+
+        if (response && response.message) {
+            throw response;
+        }
+
+        res.send(response)
+    } catch (error) {
+        return next(error)
+    }
+}
+
 module.exports = {
     postFinancialIncome: postFinancialIncome,
     getFinancialIncome: getFinancialIncome,
-    getFinancialIncomeById: getFinancialIncomeById
+    getFinancialIncomeById: getFinancialIncomeById,
+    getFinancialIncomeByQuery: getFinancialIncomeByQuery,
+    deleteFinancialIncome: deleteFinancialIncome,
+    destroyFinancialIncome: destroyFinancialIncome
 }
