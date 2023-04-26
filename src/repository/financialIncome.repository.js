@@ -11,6 +11,14 @@ const postManyFinancialIncome = async function(financialValues) {
     return financialIncome;
 };
 
+const putFinancialIncome = async function(financialValues, id) {
+    await Receita.update(financialValues, {
+        where : {
+            id: id
+        }
+    })
+}
+
 const getFinancialIncome = async function() {
     const financialIncome = await Receita.findAll();
     return financialIncome;
@@ -60,6 +68,7 @@ const destroyFinancialIncome = async function(id) {
 module.exports = {
     postFinancialIncome: postFinancialIncome,
     postManyFinancialIncome: postManyFinancialIncome,
+    putFinancialIncome: putFinancialIncome,
     getFinancialIncome: getFinancialIncome,
     getFinancialIncomeById: getFinancialIncomeById,
     getFinancialIncomeByQuery: getFinancialIncomeByQuery,

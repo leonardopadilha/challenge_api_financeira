@@ -17,6 +17,30 @@ const postFinancialIncome = async function(req, res, next) {
     }
 }
 
+const putFinancialIncome = async function(req, res, next) {
+    try {
+        const errors = validationResult(req);
+
+        if (!errors.isEmpty()) {
+            throw createError(422, { errors: errors.array() })
+        }
+
+        const response = await financialIncomeService.putFinancialIncome({
+            descricao: req.body.descricao,
+            valor: req.body.valor,
+            mes: req.body.mes
+        }, req.params.id);
+
+        if (response && response.message) {
+            throw response;
+        }
+
+        res.send(response);
+    } catch (error) {
+        return next(error);
+    }
+}
+
 const getFinancialIncome = async function(req, res, next) {
     try {
         const response = await financialIncomeService.getFinancialIncome();
@@ -89,6 +113,7 @@ const destroyFinancialIncome = async function(req, res, next) {
 
 module.exports = {
     postFinancialIncome: postFinancialIncome,
+    putFinancialIncome: putFinancialIncome,
     getFinancialIncome: getFinancialIncome,
     getFinancialIncomeById: getFinancialIncomeById,
     getFinancialIncomeByQuery: getFinancialIncomeByQuery,

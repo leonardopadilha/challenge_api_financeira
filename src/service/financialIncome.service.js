@@ -3,8 +3,8 @@ const createError = require('http-errors')
 
 const postFinancialIncome = async function(financialValues) {
 
-   const descriptionExists = await financialIncomeRepository.getFinancialIncomeByWhere({ descricao: financialValues.descricao })
-   const mounthExists = await financialIncomeRepository.getFinancialIncomeByWhere({ mes: financialValues.mes })
+    const descriptionExists = await returnDescription(financialValues);
+    const mounthExists = await returnMonth(financialValues);
 
     if (descriptionExists && mounthExists) {
         return createError(409, 'Sorry, finance income already exists')
@@ -17,6 +17,24 @@ const postFinancialIncome = async function(financialValues) {
 
 const postManyFinancialIncome = async function(financialValues) {
 
+}
+
+const putFinancialIncome = async function(financialValues, id) {
+    const financialIncome = await financialIncomeRepository.getFinancialIncomeById(id);
+
+    if (!financialIncome) {
+        return createError(404, `Sorry, id ${id} not found`) 
+    }
+
+    const descriptionExists = await returnDescription(financialValues);
+    const mounthExists = await returnMonth(financialValues);
+
+    if (descriptionExists && mounthExists) {
+        return createError(409, 'Sorry, finance income already exists')
+    }
+
+    await financialIncomeRepository.putFinancialIncome(financialValues, id);
+    return await financialIncomeRepository.getFinancialIncomeById(id);
 }
 
 const getFinancialIncome = async function() {
@@ -72,8 +90,19 @@ const destroyFinancialIncome = async function(id) {
     return financialIncome;
 }
 
+const returnDescription = async function (financialValues) {
+    const descriptionExists = await financialIncomeRepository.getFinancialIncomeByWhere({ descricao: financialValues.descricao })
+    return descriptionExists;
+}
+
+const returnMonth = async function(financialValues) {
+    const monthExists = await financialIncomeRepository.getFinancialIncomeByWhere({ mes: financialValues.mes })
+    return monthExists;
+}
+
 module.exports = {
     postFinancialIncome: postFinancialIncome,
+    putFinancialIncome: putFinancialIncome,
     getFinancialIncome: getFinancialIncome,
     getFinancialIncomeById: getFinancialIncomeById,
     getFinancialIncomeByQuery: getFinancialIncomeByQuery,
