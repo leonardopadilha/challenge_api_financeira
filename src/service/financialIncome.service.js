@@ -17,6 +17,24 @@ const postFinancialIncome = async function(financialValues) {
 
 const postManyFinancialIncome = async function(financialValues) {
 
+    let descriptionExists = "";
+    let mounthExists = "";
+    let financials = ""
+    let arrayPayments = []
+
+    for (let i = 0; i < financialValues.length; i++) {
+        
+        descriptionExists = await financialIncomeRepository.getFinancialIncomeByWhere({descricao: financialValues[i].descricao});
+        mounthExists = await financialIncomeRepository.getFinancialIncomeByWhere({mes: financialValues[i].mes});
+
+        if (descriptionExists && mounthExists) {
+            return createError(409, `Sorry, finance ${financialValues[i].descricao} income already exists`)
+        } else {
+            financials = await financialIncomeRepository.postFinancialIncome(financialValues[i]);
+            arrayPayments.push(financials)
+        }
+    }
+    return arrayPayments
 }
 
 const putFinancialIncome = async function(financialValues, id) {
@@ -102,6 +120,7 @@ const returnMonth = async function(financialValues) {
 
 module.exports = {
     postFinancialIncome: postFinancialIncome,
+    postManyFinancialIncome: postManyFinancialIncome,
     putFinancialIncome: putFinancialIncome,
     getFinancialIncome: getFinancialIncome,
     getFinancialIncomeById: getFinancialIncomeById,

@@ -17,6 +17,21 @@ const postFinancialIncome = async function(req, res, next) {
     }
 }
 
+const postManyFinancialIncome = async function(req, res, next) {
+    try {
+        const errors = validationResult(req);
+
+        if (!errors.isEmpty()) {
+            throw createError(422, { errors: errors.array() });
+        }
+
+        const response = await financialIncomeService.postManyFinancialIncome(req.body);
+        res.send(response)
+    } catch (error) {
+        return next(error)
+    }
+}
+
 const putFinancialIncome = async function(req, res, next) {
     try {
         const errors = validationResult(req);
@@ -113,6 +128,7 @@ const destroyFinancialIncome = async function(req, res, next) {
 
 module.exports = {
     postFinancialIncome: postFinancialIncome,
+    postManyFinancialIncome: postManyFinancialIncome,
     putFinancialIncome: putFinancialIncome,
     getFinancialIncome: getFinancialIncome,
     getFinancialIncomeById: getFinancialIncomeById,

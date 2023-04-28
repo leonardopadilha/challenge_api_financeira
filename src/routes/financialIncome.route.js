@@ -6,7 +6,8 @@ const financeialIncomeValidator = require('../validators/financialIncome.validat
 
 router
     .post('/', financeialIncomeValidator.postFinancialIncome(), financialIncomeController.postFinancialIncome)
-    
+    .post('/many', financialIncomeController.postManyFinancialIncome)
+
     .put('/:id', financeialIncomeValidator.postFinancialIncome(), financialIncomeController.putFinancialIncome)
     
     .get('/', financialIncomeController.getFinancialIncome)
