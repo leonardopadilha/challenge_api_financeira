@@ -19,7 +19,7 @@ const postManyFinancialIncome = async function(financialValues) {
 
     let descriptionExists = "";
     let mounthExists = "";
-    let financials = ""
+    let finance = ""
     let arrayPayments = []
 
     for (let i = 0; i < financialValues.length; i++) {
@@ -30,8 +30,8 @@ const postManyFinancialIncome = async function(financialValues) {
         if (descriptionExists && mounthExists) {
             return createError(409, `Sorry, finance ${financialValues[i].descricao} income already exists`)
         } else {
-            financials = await financialIncomeRepository.postFinancialIncome(financialValues[i]);
-            arrayPayments.push(financials)
+            finance = await financialIncomeRepository.postFinancialIncome(financialValues[i]);
+            arrayPayments.push(finance)
         }
     }
     return arrayPayments
