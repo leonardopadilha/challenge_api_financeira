@@ -2,13 +2,13 @@ const { Despesa, sequelize } = require('../database/models');
 const { QueryTypes } = require('sequelize');
 
 const postFinancialExpenses = async function(financialExpenses) {
-    const financialExpenses = await Despesa.create(financialExpenses);
-    return financialExpenses;
+    const financialValues = await Despesa.create(financialExpenses);
+    return financialValues;
 };
 
 const postManyFinancialExpenses = async function(financialExpenses) {
-    const financialExpenses = await Despesa.create(financialExpenses);
-    return financialExpenses;
+    const financialValues = await Despesa.create(financialExpenses);
+    return financialValues;
 };
 
 const putFinancialExpenses = async function(financialExpenses, id) {
@@ -43,8 +43,8 @@ const getFinancialExpensesByQuery = async function(description) {
 };
 
 const getFinancialExpensesByWhere = async function(financialExpenses) {
-    const financialExpenses = await Despesa.findOne({ where: financialExpenses});
-    return financialExpenses;
+    const financialValues = await Despesa.findOne({ where: financialExpenses});
+    return financialValues;
 };
 
 const deleteFinancialExpenses = async function(id) {
@@ -65,13 +65,13 @@ const destroyFinancialExpenses = async function(id) {
 } 
 
 module.exports = {
-    postFinancialExpenses,
-    postManyFinancialExpenses,
-    putFinancialExpenses,
-    getFinancialExpenses,
-    getFinancialExpensesById,
-    getFinancialExpensesByQuery,
-    getFinancialExpensesByWhere,
-    deleteFinancialExpenses,
-    destroyFinancialExpenses,
+    postFinancialExpenses: postFinancialExpenses,
+    postManyFinancialExpenses: postManyFinancialExpenses,
+    putFinancialExpenses: putFinancialExpenses,
+    getFinancialExpenses: getFinancialExpenses,
+    getFinancialExpensesById: getFinancialExpensesById,
+    getFinancialExpensesByQuery: getFinancialExpensesByQuery,
+    getFinancialExpensesByWhere: getFinancialExpensesByWhere,
+    deleteFinancialExpenses: deleteFinancialExpenses,
+    destroyFinancialExpenses: destroyFinancialExpenses,
 }

@@ -9,11 +9,13 @@ const handleError = require('./src/middlewares/handleError');
 const app = express();
 
 const financialIncomeRoute = require('./src/routes/financialIncome.route');
+const financialExpensesRoute = require('./src/routes/financialExpenses.route');
 
 app.use(bodyParser.urlencoded( { extended: true }));
 app.use(bodyParser.json());
 
 app.use('/api/receitas', financialIncomeRoute);
+app.use('/api/despesas', financialExpensesRoute)
 
 app.use(handle_404Error);
 app.use(handleError);
