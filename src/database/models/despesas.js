@@ -14,10 +14,14 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Despesas.init({
-    descricao: DataTypes.STRING
+    descricao: DataTypes.STRING,
+    valor: DataTypes.DECIMAL(10, 2),
+    mes: DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'Despesas',
+    modelName: 'Despesa',
+    tableName: 'despesas',
+    paranoid: true
   });
   return Despesas;
 };
