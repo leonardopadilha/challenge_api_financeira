@@ -1,2 +1,3 @@
 
 npx sequelize-cli model:generate --name Receitas --attributes descricao:string
+npx sequelize-cli model:generate --name Despesas --attributes descricao:string
