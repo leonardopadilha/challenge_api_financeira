@@ -7,4 +7,6 @@ const financialValidator = require('../validators/financialIncome.validator');
 router
     .post('/', financialValidator.postFinancialIncome(), financialExpensesController.postFinancialExpenses)
 
+    .get('/', financialExpensesController.getFinancialExpenses)
+
 module.exports = router;

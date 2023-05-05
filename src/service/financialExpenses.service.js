@@ -5,14 +5,22 @@ const postFinancialExpenses = async function(financialExpenses) {
     const descriptionExists = await returnDescription(financialExpenses);
     const monthExists = await returnMonth(financialExpenses);
 
-    console.log(`Descrição: ${descriptionExists} - Mês: ${monthExists}`)
-
     if (descriptionExists && monthExists) {
         return createError(409, 'Sorry, finance income already exists')
     }
 
     const createFinancialExpenses = await financialExpensesRepository.postFinancialExpenses(financialExpenses);
     return createFinancialExpenses;
+}
+
+const getFinancialExpenses = async function() {
+    const financialExpenses = await financialExpensesRepository.getFinancialExpenses();
+
+    if (financialExpenses.length == 0) {
+        return createError(400, "Sorry, we couldn't find any records for this search.") 
+    }
+
+    return financialExpenses;
 }
 
 const returnDescription = async function(description) {
@@ -26,5 +34,6 @@ const returnMonth = async function(month) {
 }
 
 module.exports = {
-    postFinancialExpenses: postFinancialExpenses
+    postFinancialExpenses: postFinancialExpenses,
+    getFinancialExpenses: getFinancialExpenses
 }

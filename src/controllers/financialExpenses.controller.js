@@ -17,6 +17,21 @@ const postFinancialExpenses = async function(req, res, next) {
     }
 }
 
+const getFinancialExpenses = async function(req, res, next) {
+    try {
+        const response = await financialExpensesService.getFinancialExpenses();
+
+        if (response && response.message) {
+            throw response;
+        }
+
+        res.send(response);
+    } catch (error) {
+        return next(error);
+    }
+}
+
 module.exports = {
     postFinancialExpenses: postFinancialExpenses,
+    getFinancialExpenses: getFinancialExpenses
 }
