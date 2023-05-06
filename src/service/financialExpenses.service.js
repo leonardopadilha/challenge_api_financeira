@@ -13,6 +13,28 @@ const postFinancialExpenses = async function(financialExpenses) {
     return createFinancialExpenses;
 }
 
+const postManyFinancialExpenses = async function(financialExpenses) {
+
+}
+
+const putFinancialExpenses = async function(financialExpenses, id) {
+    const existsFinancial = await financialExpensesRepository.getFinancialExpensesById(id);
+
+    if (!existsFinancial) {
+        return createError(404, `Sorry, id ${id} not found`) 
+    }
+
+    const descriptionExists = await returnDescription(financialExpenses);
+    const monthExists = await returnMonth(financialExpenses);
+
+    if (descriptionExists && monthExists) {
+        return createError(409, 'Sorry, finance income already exists')
+    }
+
+    const updateFinancialExpenses = await financialExpensesRepository.putFinancialExpenses(financialExpenses, id);
+    return await financialExpensesRepository.getFinancialExpensesById(id);
+}
+
 const getFinancialExpenses = async function() {
     const financialExpenses = await financialExpensesRepository.getFinancialExpenses();
 
@@ -35,5 +57,6 @@ const returnMonth = async function(month) {
 
 module.exports = {
     postFinancialExpenses: postFinancialExpenses,
+    putFinancialExpenses: putFinancialExpenses,
     getFinancialExpenses: getFinancialExpenses
 }

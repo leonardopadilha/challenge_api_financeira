@@ -9,4 +9,6 @@ router
 
     .get('/', financialExpensesController.getFinancialExpenses)
 
+    .put('/:id', financialValidator.postFinancialIncome(), financialExpensesController.putFinancialExpenses)
+
 module.exports = router;
