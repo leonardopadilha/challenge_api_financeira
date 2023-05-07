@@ -45,6 +45,16 @@ const getFinancialExpenses = async function() {
     return financialExpenses;
 }
 
+const getFinancialExpensesById = async function(id) {
+    const financialExpenses = await financialExpensesRepository.getFinancialExpensesById(id)
+
+    if (!financialExpenses) {
+        return createError(404, `Sorry, id ${id} not found`) 
+    }
+
+    return financialExpenses;
+}
+
 const returnDescription = async function(description) {
     const existsFinancialExpenses = await financialExpensesRepository.getFinancialExpensesByWhere({ descricao: description.descricao })
     return existsFinancialExpenses;
@@ -58,5 +68,6 @@ const returnMonth = async function(month) {
 module.exports = {
     postFinancialExpenses: postFinancialExpenses,
     putFinancialExpenses: putFinancialExpenses,
-    getFinancialExpenses: getFinancialExpenses
+    getFinancialExpenses: getFinancialExpenses,
+    getFinancialExpensesById: getFinancialExpensesById
 }

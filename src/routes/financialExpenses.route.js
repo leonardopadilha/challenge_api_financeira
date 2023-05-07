@@ -8,6 +8,7 @@ router
     .post('/', financialValidator.postFinancialIncome(), financialExpensesController.postFinancialExpenses)
 
     .get('/', financialExpensesController.getFinancialExpenses)
+    .get('/:id', financialExpensesController.getFinancialExpensesById)
 
     .put('/:id', financialValidator.postFinancialIncome(), financialExpensesController.putFinancialExpenses)
 

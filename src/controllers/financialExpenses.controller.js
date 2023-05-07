@@ -31,6 +31,20 @@ const getFinancialExpenses = async function(req, res, next) {
     }
 }
 
+const getFinancialExpensesById = async function(req, res, next) {
+    try {
+        const response = await financialExpensesService.getFinancialExpensesById(req.params.id);
+
+        if (response && response.message) {
+            throw response;
+        }
+
+        res.send(response);
+    } catch (error) {
+        return next(error);
+    }
+}
+
 const putFinancialExpenses = async function(req, res, next) {
     try {
         const errors = validationResult(req);
@@ -58,5 +72,6 @@ const putFinancialExpenses = async function(req, res, next) {
 module.exports = {
     postFinancialExpenses: postFinancialExpenses,
     getFinancialExpenses: getFinancialExpenses,
-    putFinancialExpenses: putFinancialExpenses
+    getFinancialExpensesById: getFinancialExpensesById,
+    putFinancialExpenses: putFinancialExpenses,
 }
