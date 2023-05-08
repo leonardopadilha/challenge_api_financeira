@@ -20,12 +20,20 @@ const putFinancialExpenses = async function(financialExpenses, id) {
 };
 
 const getFinancialExpenses = async function() {
-    const financialExpenses = await Despesa.findAll();
+    const financialExpenses = await Despesa.findAll({
+        attributes: [
+            'id', 'descricao', 'valor', 'mes'
+        ]
+    });
     return financialExpenses;
 };
 
 const getFinancialExpensesById = async function(id) {
-    const financialExpenses = await Despesa.findByPk(id);
+    const financialExpenses = await Despesa.findByPk(id, {
+        attributes: [
+            'id', 'descricao', 'valor', 'mes'
+        ]
+    });
     return financialExpenses;
 };
 
