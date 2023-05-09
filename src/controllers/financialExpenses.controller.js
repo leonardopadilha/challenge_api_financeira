@@ -69,9 +69,39 @@ const putFinancialExpenses = async function(req, res, next) {
     }
 }
 
+const deleteFinancialExpenses = async function(req, res, next) {
+    try {
+        const response = await financialExpensesService.deleteFinancialExpenses(req.params.id);
+
+        if (response && response.message) {
+            throw response;
+        }
+
+        res.send(response)
+    } catch (error) {
+        return next(error)
+    }
+}
+
+const destroyFinancialIncome = async function(req, res, next) {
+    try {
+        const response = await financialExpensesService.destroyFinancialExpenses(req.params.id)
+
+        if (response && response.message) {
+            throw response
+        }
+
+        res.send(response)
+    } catch (error) {
+        return next(error);
+    }
+}
+
 module.exports = {
     postFinancialExpenses: postFinancialExpenses,
     getFinancialExpenses: getFinancialExpenses,
     getFinancialExpensesById: getFinancialExpensesById,
     putFinancialExpenses: putFinancialExpenses,
+    deleteFinancialExpenses: deleteFinancialExpenses,
+    destroyFinancialIncome: destroyFinancialIncome
 }

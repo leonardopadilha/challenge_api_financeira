@@ -20,12 +20,20 @@ const putFinancialIncome = async function(financialValues, id) {
 }
 
 const getFinancialIncome = async function() {
-    const financialIncome = await Receita.findAll();
+    const financialIncome = await Receita.findAll({
+        attributes: [
+            'id', 'descricao', 'valor', 'mes'
+        ]
+    });
     return financialIncome;
 };
 
 const getFinancialIncomeById = async function(id) {
-    const financialIncome = await Receita.findByPk(id);
+    const financialIncome = await Receita.findByPk(id, {
+        attributes: [
+            'id', 'descricao', 'valor', 'mes'
+        ]
+    });
     return financialIncome;
 };
 

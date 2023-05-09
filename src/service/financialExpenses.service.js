@@ -55,6 +55,28 @@ const getFinancialExpensesById = async function(id) {
     return financialExpenses;
 }
 
+const deleteFinancialExpenses = async function(id) {
+    const financialExpenses = await financialExpensesRepository.getFinancialExpensesById(id);
+
+    if (!financialExpenses) {
+        return createError(404, `Sorry, id ${id} not found`) 
+    }
+
+    await financialExpensesRepository.deleteFinancialExpenses(id);
+    return financialExpenses;
+}
+
+const destroyFinancialExpenses = async function(id) {
+    const financialExpenses = await financialExpensesRepository.getFinancialExpenses(id);
+
+    if (!financialExpenses) {
+        return createError(404, `Sorry, id ${id} not found`)
+    }
+
+    await financialExpensesRepository.destroyFinancialExpenses(id);
+    return financialExpenses;
+}
+
 const returnDescription = async function(description) {
     const existsFinancialExpenses = await financialExpensesRepository.getFinancialExpensesByWhere({ descricao: description.descricao })
     return existsFinancialExpenses;
@@ -69,5 +91,7 @@ module.exports = {
     postFinancialExpenses: postFinancialExpenses,
     putFinancialExpenses: putFinancialExpenses,
     getFinancialExpenses: getFinancialExpenses,
-    getFinancialExpensesById: getFinancialExpensesById
+    getFinancialExpensesById: getFinancialExpensesById,
+    deleteFinancialExpenses: deleteFinancialExpenses,
+    destroyFinancialExpenses: destroyFinancialExpenses
 }
