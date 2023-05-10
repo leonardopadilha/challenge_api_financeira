@@ -66,15 +66,8 @@ const deleteFinancialExpenses = async function(id) {
     return financialExpenses;
 }
 
-const destroyFinancialExpenses = async function(id) {
-    const financialExpenses = await financialExpensesRepository.getFinancialExpenses(id);
-
-    if (!financialExpenses) {
-        return createError(404, `Sorry, id ${id} not found`)
-    }
-
-    await financialExpensesRepository.destroyFinancialExpenses(id);
-    return financialExpenses;
+const destroyFinancialExpenses = async function() {
+    await financialExpensesRepository.destroyFinancialExpenses();
 }
 
 const returnDescription = async function(description) {

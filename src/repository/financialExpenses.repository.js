@@ -63,13 +63,11 @@ const deleteFinancialExpenses = async function(id) {
     })
 };
 
-const destroyFinancialExpenses = async function(id) {
-    return await Despesa.destroy({
-        where: {
-            id: id
-        },
+const destroyFinancialExpenses = async function() {
+    await Despesa.destroy({
+        truncate: true,
         force: true
-    })
+      })
 } 
 
 module.exports = {

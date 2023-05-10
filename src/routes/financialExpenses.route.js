@@ -13,6 +13,6 @@ router
     .put('/:id', financialValidator.postFinancialIncome(), financialExpensesController.putFinancialExpenses)
 
     .delete('/:id', financialExpensesController.deleteFinancialExpenses)
-    .delete('/:id/destroy', financialExpensesController.destroyFinancialIncome)
+    .delete('/', financialExpensesController.destroyFinancialIncome)
 
 module.exports = router;

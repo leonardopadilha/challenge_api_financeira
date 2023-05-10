@@ -11,7 +11,7 @@ const postFinancialExpenses = async function(req, res, next) {
         }
 
         const response = await financialExpensesService.postFinancialExpenses(req.body);
-        res.send(response);
+        res.status(201).send(response);
     } catch (error) {
         return next(error)
     }
@@ -85,13 +85,8 @@ const deleteFinancialExpenses = async function(req, res, next) {
 
 const destroyFinancialIncome = async function(req, res, next) {
     try {
-        const response = await financialExpensesService.destroyFinancialExpenses(req.params.id)
-
-        if (response && response.message) {
-            throw response
-        }
-
-        res.send(response)
+        await financialExpensesService.destroyFinancialExpenses()
+        res.status(200).send({message: 'Successfully deleted information'})
     } catch (error) {
         return next(error);
     }
