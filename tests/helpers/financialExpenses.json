@@ -1,11 +1,19 @@
 {
     "success": {
-        "descricao": "Cursoo",
+        "descricao": "Curso",
         "valor": 152.22,
         "mes": "Novembro"
     },
     "unnamed": {
         "valor": 152.22,
         "mes": "Novembro"
+    },
+    "without_price": {
+        "descricao": "Curso Um",
+        "mes": "Dezembro"
+    },
+    "no_month": {
+        "descricao": "Curso Dois",
+        "valor": 25.32
     }
 }
