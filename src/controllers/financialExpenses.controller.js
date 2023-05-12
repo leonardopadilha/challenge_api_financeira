@@ -63,7 +63,7 @@ const putFinancialExpenses = async function(req, res, next) {
             throw response;
         }
 
-        res.send(response)
+        res.status(201).send(response)
     } catch (error) {
         return next(error)
     }
