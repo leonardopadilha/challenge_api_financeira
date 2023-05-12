@@ -20,6 +20,22 @@ const postFinancialExpenses = Joi.object({
                   .required()
 })
 
+const putFinancialExpenses = Joi.object({
+    id: Joi.number()
+           .required(),
+
+    descricao: Joi.string()
+                  .required(),
+
+    valor: Joi.number()
+              .required(),
+
+    mes: Joi.string()
+            .required(),
+})
+
+
 module.exports = {
-    postFinancialExpenses
+    postFinancialExpenses,
+    putFinancialExpenses
 }
