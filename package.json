@@ -26,5 +26,8 @@
     "npm": "^9.6.4",
     "sequelize": "^6.31.0",
     "sequelize-cli": "^6.6.0"
+  },
+  "dependencies": {
+    "joi": "^17.9.2"
   }
 }
