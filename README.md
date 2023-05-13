@@ -26,6 +26,12 @@ Instale a API com NPM
   npm start
 ```
 
+## Execução dos testes de integração
+
+```bash
+  npm run tests
+```
+
 ## Documentação da API
 
 ### Receitas
@@ -46,7 +52,7 @@ Instale a API com NPM
 | `id`        | `int`      | **Obrigatório**. O ID do item que você quer |
 
 #### Adicionar uma receita
-##### A API não deve permitir o cadastro de depesas duplicadas(contendo a mesma descrição, dentro do mesmo mês)
+##### A API não deve permitir o cadastro de receitas duplicadas(contendo a mesma descrição, dentro do mesmo mês)
 
 ```http
   POST /api/receitas
@@ -59,7 +65,7 @@ Instale a API com NPM
 | `mes`       | `string`   | **Obrigatório**. Mês de referência                     |
 
 #### Adicionar várias receitas
-##### A API não deve permitir o cadastro de depesas duplicadas(contendo a mesma descrição, dentro do mesmo mês)
+##### A API não deve permitir o cadastro de receitas duplicadas(contendo a mesma descrição, dentro do mesmo mês)
 
 ```http
   POST /api/receitas/many
@@ -80,6 +86,72 @@ Instale a API com NPM
 | Parâmetro   | Tipo       | Descrição                                   |
 | :---------- | :--------- | :------------------------------------------ |
 | `id`        | `int`      | **Obrigatório**. O ID do item que você quer |
+
+#### Deleta todas as receita (truncate)
+
+```http
+  GET /api/receitas
+```
+
+### Despesas
+#### Retorna as despesas salvas 
+
+```http
+  GET /api/receitas
+```
+
+#### Retorna uma despesa
+
+```http
+  GET /api/receitas/${id}
+```
+
+| Parâmetro   | Tipo       | Descrição                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `id`        | `int`      | **Obrigatório**. O ID do item que você quer |
+
+#### Adicionar uma despesa
+##### A API não deve permitir o cadastro de depesas duplicadas(contendo a mesma descrição, dentro do mesmo mês)
+
+```http
+  POST /api/receitas
+```
+
+| Parâmetro   | Tipo       | Descrição                                              |
+| :---------- | :--------- | :----------------------------------------------------- |
+| `descricao` | `string`   | **Obrigatório**. A descrição da receita que será salva |
+| `valor`     | `float`    | **Obrigatório**. Valor da receita                      |
+| `mes`       | `string`   | **Obrigatório**. Mês de referência                     |
+
+#### Adicionar várias despesas
+##### A API não deve permitir o cadastro de depesas duplicadas(contendo a mesma descrição, dentro do mesmo mês)
+
+```http
+  POST /api/receitas/many
+```
+
+| Parâmetro   | Tipo       | Descrição                                              |
+| :---------- | :--------- | :----------------------------------------------------- |
+| `descricao` | `string`   | **Obrigatório**. A descrição da receita que será salva |
+| `valor`     | `float`    | **Obrigatório**. Valor da receita                      |
+| `mes`       | `string`   | **Obrigatório**. Mês de referência                     |
+
+#### Deleta uma despesa
+
+```http
+  GET /api/receitas/${id}
+```
+
+| Parâmetro   | Tipo       | Descrição                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `id`        | `int`      | **Obrigatório**. O ID do item que você quer |
+
+#### Deleta todas as despesas (truncate)
+
+```http
+  GET /api/receitas
+
+
 
 
 
