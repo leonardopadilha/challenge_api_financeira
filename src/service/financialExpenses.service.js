@@ -15,6 +15,21 @@ const postFinancialExpenses = async function(financialExpenses) {
 
 const postManyFinancialExpenses = async function(financialExpenses) {
 
+    let financial;
+    let finance = [];
+
+    for (let i = 0; i < financialExpenses.length; i++) {
+        const descriptionExists = await financialExpensesRepository.getFinancialExpensesByWhere({ descricao: financialExpenses[i].descricao })
+        const monthExists = await financialExpensesRepository.getFinancialExpensesByWhere({ mes: financialExpenses[i].mes });
+
+        if (descriptionExists && monthExists) {
+            return createError(409, 'Sorry, finance income already exists')
+        } else {
+            financial = await financialExpensesRepository.postFinancialExpenses(financialExpenses[i])
+            finance.push(financial)
+        }
+    }
+    return finance;
 }
 
 const putFinancialExpenses = async function(financialExpenses, id) {
@@ -82,6 +97,7 @@ const returnMonth = async function(month) {
 
 module.exports = {
     postFinancialExpenses: postFinancialExpenses,
+    postManyFinancialExpenses: postManyFinancialExpenses,
     putFinancialExpenses: putFinancialExpenses,
     getFinancialExpenses: getFinancialExpenses,
     getFinancialExpensesById: getFinancialExpensesById,
