@@ -10,8 +10,12 @@ API desenvolvida com base no [Challenge Alura](https://www.alura.com.br/challeng
 [![Trello](https://img.shields.io/badge/license-trello-blue.svg)](https://trello.com/)
 [![Postman](https://img.shields.io/badge/license-postman-orange.svg)](https://www.postman.com/)
 [![Express](https://img.shields.io/badge/license-express-green.svg)](https://expressjs.com/)
+[![Mocha](https://img.shields.io/badge/license-mocha-red.svg)](https://mochajs.org/)
+[![Chai](https://img.shields.io/badge/license-chai-red.svg)](https://www.chaijs.com/)
+[![JoiSchema](https://img.shields.io/badge/license-JoiSchema-red.svg)](https://www.npmjs.com/package/joi)
+[![Express Validator](https://img.shields.io/badge/license-express--validator-green.svg)](https://www.npmjs.com/package/express-validator)
+[![HTTP Errors](https://img.shields.io/badge/license-http--errors-green.svg)](https://www.npmjs.com/package/http-errors)
 [![JS](https://img.shields.io/badge/license-javascript-blue.svg)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-
 ## Instalação
 
 Instale a API com NPM
