@@ -15,7 +15,7 @@ router
     .get('/buscar', financialIncomeController.getFinancialIncomeByQuery)
     
     .delete('/:id', financialIncomeController.deleteFinancialIncome)
-    .delete('/definitivo/:id', financialIncomeController.destroyFinancialIncome)
+    .delete('/', financialIncomeController.destroyFinancialIncome)
 
 
 module.exports = router;

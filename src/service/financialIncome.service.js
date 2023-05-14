@@ -97,15 +97,8 @@ const deleteFinancialIncome = async function(id) {
 
 }
 
-const destroyFinancialIncome = async function(id) {
-    const financialIncome = await financialIncomeRepository.getFinancialIncomeById(id);
-
-    if (!financialIncome) {
-        return createError(404, `Sorry, id ${id} not found`)
-    }
-
-    await financialIncomeRepository.destroyFinancialIncome(id);
-    return financialIncome;
+const destroyFinancialIncome = async function() {
+    await financialIncomeRepository.destroyFinancialIncome();
 }
 
 const returnDescription = async function (financialValues) {

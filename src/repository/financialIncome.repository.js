@@ -57,20 +57,18 @@ const getFinancialIncomeByQuery = async function(description) {
 };
 
 const deleteFinancialIncome = async function(id) {
-    return await Receita.destroy({
-        where : {
-            id: id
-        }
-    })
+    await Receita.destroy({
+        truncate: true,
+        force: true
+      }
+    )
 };
 
-const destroyFinancialIncome = async function(id) {
+const destroyFinancialIncome = async function() {
     return await Receita.destroy({
-        where: {
-            id: id,
-        },
-        force: true,
-    })
+        truncate: true,
+        force: true
+      })
 };
 
 module.exports = {

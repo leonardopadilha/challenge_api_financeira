@@ -11,7 +11,7 @@ const postFinancialIncome = async function(req, res, next) {
         }
 
         const response = await financialIncomeService.postFinancialIncome(req.body);
-        res.send(response);
+        res.status(201).send(response);
     } catch (error) {
         return next(error)
     }
@@ -26,7 +26,7 @@ const postManyFinancialIncome = async function(req, res, next) {
         }
 
         const response = await financialIncomeService.postManyFinancialIncome(req.body);
-        res.send(response)
+        res.status(201).send(response)
     } catch (error) {
         return next(error)
     }
@@ -114,13 +114,8 @@ const deleteFinancialIncome = async function(req, res, next) {
 
 const destroyFinancialIncome = async function(req, res, next) {
     try {
-        const response = await financialIncomeService.destroyFinancialIncome(req.params.id);
-
-        if (response && response.message) {
-            throw response;
-        }
-
-        res.send(response)
+        await financialIncomeService.destroyFinancialIncome();
+        res.status(200).send({message: 'Successfully deleted information'})
     } catch (error) {
         return next(error)
     }
