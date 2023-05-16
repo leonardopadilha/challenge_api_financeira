@@ -79,11 +79,11 @@ const putFinancialExpenses = async function(req, res, next) {
             mes: req.body.mes
         }, req.params.id)
 
-        if (response && response.messa) {
+        if (response && response.message) {
             throw response;
         }
 
-        res.status(201).send(response)
+        res.send(response)
     } catch (error) {
         return next(error)
     }
