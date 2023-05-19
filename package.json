@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "testUnitary": "mocha tests/unitary/service --reporter mochawesome --timeout 10000 --exit",
     "tests": "mocha tests/integration --reporter mochawesome --timeout 10000 --exit",
     "start": "nodemon ./server.js"
   },
