@@ -19,6 +19,11 @@ describe('Suite', () => {
             expect(objSave[0].descricao).to.equals('Curso de programacao I')
         })
 
+        it ('Então a mesma receita não pode ser salva no mesmo mês', async function () {
+            const description = await financialIncomeService.postFinancialIncome(objFinancial);
+            expect(description.message).to.equals('Sorry, finance income already exists')
+        })
+
         it ('Então os dados devem apagados do banco', async function () {
             await financialIncomeService.destroyFinancialIncome()
             const returnFinancial = await financialIncomeService.getFinancialIncome();
