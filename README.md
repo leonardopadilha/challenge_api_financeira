@@ -36,6 +36,12 @@ Instale a API com NPM
   npm run tests
 ```
 
+## Execução dos testes unitários do service
+
+```bash
+  npm run testUnitary
+```
+
 ## Documentação da API
 
 ### Receitas
