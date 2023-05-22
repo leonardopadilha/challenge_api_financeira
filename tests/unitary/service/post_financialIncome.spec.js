@@ -1,5 +1,6 @@
 const chai = require('chai');
 const objFinancial = require('../../../helpers/obj-course');
+const arrFinancial = require('../../../helpers/array-course')
 const financialIncomeService = require('../../../src/service/financialIncome.service');
 
 const expect = chai.expect;
@@ -22,6 +23,11 @@ describe('Suite', () => {
         it ('Então a mesma receita não pode ser salva no mesmo mês', async function () {
             const description = await financialIncomeService.postFinancialIncome(objFinancial);
             expect(description.message).to.equals('Sorry, finance income already exists')
+        })
+
+        it ('Então deve salvar em um array uma receita duplicada', async function () {
+            const array_financial = await financialIncomeService.postManyFinancialIncome(arrFinancial)
+            expect(array_financial.message).to.contains('finance Curso de programacao I income already exists')
         })
 
         it ('Então os dados devem apagados do banco', async function () {
